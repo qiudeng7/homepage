@@ -23,8 +23,9 @@ if (!slug.value && scripts.value?.[0]) {
   await navigateTo(scripts.value[0].path, { replace: true })
 }
 
-const { data: page } = await useAsyncData(() =>
-  queryCollection('scripts').path(currentPath.value).first()
+const { data: page } = await useAsyncData(
+  () => route.path,
+  () => queryCollection('scripts').path(currentPath.value).first()
 )
 
 if (!page.value && currentPath.value) {

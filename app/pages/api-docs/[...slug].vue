@@ -26,8 +26,9 @@ if (!slug.value && apiDocs.value?.[0]) {
   await navigateTo(apiDocs.value[0].path, { replace: true })
 }
 
-const { data: page } = await useAsyncData(() =>
-  queryCollection('apiDocs').path(currentPath.value).first()
+const { data: page } = await useAsyncData(
+  () => route.path,
+  () => queryCollection('apiDocs').path(currentPath.value).first()
 )
 
 // 如果没有找到页面，404
