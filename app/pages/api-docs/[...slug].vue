@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const route = useRoute()
-const config = useRuntimeConfig()
 
 // 获取所有 API 文档列表
 const { data: apiDocs } = await useAsyncData('api-docs-list', () =>
@@ -62,29 +61,7 @@ onUnmounted(() => {
     <UPage v-if="page">
       <template #left>
         <div class="sticky top-24 w-48 space-y-6">
-          <!-- 头像区域（内联 AvatarProfile 内容，避免嵌套 sticky 冲突） -->
-          <div class="flex flex-col items-center gap-3 w-48">
-            <a
-              :href="`https://github.com/${config.public.githubUsername}`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="relative group"
-            >
-              <img
-                :src="`/api/avatar?id=${config.public.githubId}&size=${config.public.avatarSize}`"
-                :alt="config.public.authorName"
-                class="w-28 h-28 rounded-full ring-2 ring-gray-200 object-cover transition-all group-hover:brightness-50"
-              />
-              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <UIcon name="i-lucide-github" class="w-8 h-8 text-white drop-shadow-lg" />
-              </div>
-            </a>
-            
-            <div class="flex flex-col items-center gap-1">
-              <span class="text-lg font-bold text-gray-900">{{ config.public.authorName }}</span>
-              <span class="text-xs text-gray-500 text-center italic leading-relaxed">{{ config.public.motto }}</span>
-            </div>
-          </div>
+          <AvatarProfile />
           
           <nav class="border-t pt-4">
             <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">API 文档</p>

@@ -3,7 +3,7 @@ const { public: { authorName, githubId, githubUsername, avatarSize, motto } } = 
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-3 sticky top-24 w-48">
+  <div class="flex flex-col items-center gap-3 w-48">
     <a
       :href="`https://github.com/${githubUsername}`"
       target="_blank"

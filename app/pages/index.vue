@@ -10,7 +10,9 @@ const { data: posts } = await useAsyncData('blog-list', () =>
   <UContainer class="py-12 max-w-[1400px]">
     <UPage>
       <template #left>
-        <AvatarProfile />
+        <div class="sticky top-24">
+          <AvatarProfile />
+        </div>
       </template>
 
       <UPageBody>

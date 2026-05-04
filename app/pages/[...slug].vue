@@ -33,7 +33,9 @@ onUnmounted(() => {
   <UContainer class="py-12 max-w-[1400px]">
     <UPage v-if="page">
       <template #left>
-        <AvatarProfile />
+        <div class="sticky top-24">
+          <AvatarProfile />
+        </div>
       </template>
 
       <div class="mb-4">
