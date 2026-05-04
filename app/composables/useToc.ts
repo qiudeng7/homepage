@@ -111,13 +111,6 @@ export function useToc() {
     }
   }
 
-  onUnmounted(() => {
-    if (observer) {
-      observer.disconnect()
-      observer = null
-    }
-  })
-
   return {
     links,
     activeId,

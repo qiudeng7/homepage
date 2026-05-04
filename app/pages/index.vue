@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { data: rawMarkdown } = await useFetch('/api/content/demo')
 const { links, activeId, parseMarkdownHeadings, observeHeadings, scrollTo } = useToc()
 
@@ -9,11 +9,18 @@ watchEffect(() => {
   }
 })
 
-// 当 links 变化且 DOM 更新后，重新设置 observer
+// 当 links 变化且 DOM 更新后，重新设置 scroll 监听
+let cleanupScroll: (() => void) | undefined
+
 watch(links, async () => {
   await nextTick()
-  observeHeadings()
+  cleanupScroll?.()
+  cleanupScroll = observeHeadings()
 }, { immediate: true })
+
+onUnmounted(() => {
+  cleanupScroll?.()
+})
 </script>
 
 <template>
