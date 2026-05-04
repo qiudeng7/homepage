@@ -1,54 +1,17 @@
 ---
-title: 示例文章
-description: Common Markdown 的所有基本语法演示
-date: 2026-05-04
-tags: ['markdown', 'demo']
+title: Plan
+description: 博客更新计划
+date: 2026-05-05
+tags: ['plan']
 ---
 
-# 示例文章
+# plan
 
-这是一段普通的段落文字，用来展示 **粗体**、*斜体* 和 `行内代码` 的渲染效果。
+网站施工计划🚧
 
-## 列表演示
-
-无序列表：
-
-- 第一项
-- 第二项
-  - 嵌套项 A
-  - 嵌套项 B
-- 第三项
-
-有序列表：
-
-1. 第一步
-2. 第二步
-3. 第三步
-
-## 链接与引用
-
-这是一个 [外部链接](https://example.com)。
-
-> 这是一段引用块，用来展示引用样式的渲染效果。
-> 多行引用。
-
-## 代码块
-
-```javascript
-function hello() {
-  console.log('Hello, World!')
-}
-```
-
-## 表格
-
-| 名称 | 类型 | 描述 |
-|------|------|------|
-| name | string | 用户名 |
-| age  | number | 年龄   |
-
-## 分隔线
-
----
-
-这就是 Common Markdown 的所有基本语法演示。
+1. 添加 DocNav 层级
+2. 添加 服务中心
+   1. obsidian 同步
+   2. dae/mihomo 代理配置同步
+   3. cloudflare 国内加速
+   4. rss 订阅
