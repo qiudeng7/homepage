@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
+    "deploy": "wrangler deploy",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare"
   },
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@nuxtjs/mdc": "^0.16.1",
-    "@types/node": "^25.6.0"
+    "@types/node": "^25.6.0",
+    "wrangler": "^4.87.0"
   }
 }

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/mdc'],
   css: ['~/assets/css/main.css'],
   nitro: {
-    preset: 'cloudflare-pages'
+    preset: 'cloudflare-module',
   },
   devtools: { enabled: true }
 })
