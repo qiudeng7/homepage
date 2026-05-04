@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     public: {
       authorName: '秋灯',
       githubId: '85886906',
+      githubUsername: 'qiudeng7',
       avatarSize: '256',
       motto: '长恨此身非我有，何时忘却营营',
     }
