@@ -108,7 +108,7 @@ onUnmounted(() => {
 
       <UPageBody>
         <!-- API 元数据标签 -->
-        <div v-if="page.method || page.path" class="flex items-center gap-3 mb-6">
+        <div v-if="page.method || page.endpoint" class="flex items-center gap-3 mb-6">
           <UBadge
             v-if="page.method"
             :label="page.method"
@@ -116,10 +116,10 @@ onUnmounted(() => {
             variant="subtle"
           />
           <code
-            v-if="page.path"
+            v-if="page.endpoint"
             class="text-sm bg-gray-100 px-2 py-1 rounded text-gray-700"
           >
-            {{ page.path }}
+            {{ page.endpoint }}
           </code>
         </div>
 

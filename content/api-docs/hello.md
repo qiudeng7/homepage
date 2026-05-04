@@ -2,7 +2,7 @@
 title: Hello API
 description: 基础问候接口，用于验证 Cloudflare Pages Functions 是否正常工作
 method: GET
-path: /api/hello
+endpoint: /api/hello
 ---
 
 # Hello API

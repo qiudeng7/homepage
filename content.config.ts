@@ -21,7 +21,7 @@ export default defineContentConfig({
         title: z.string(),
         description: z.string().optional(),
         method: z.string().optional(),
-        path: z.string().optional(),
+        endpoint: z.string().optional(),
         rawbody: z.string(),
       }),
     }),

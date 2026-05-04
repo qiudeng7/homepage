@@ -2,7 +2,7 @@
 title: Avatar API
 description: 获取 GitHub 用户头像，支持自定义尺寸和缓存
 method: GET
-path: /api/avatar
+endpoint: /api/avatar
 ---
 
 # Avatar API

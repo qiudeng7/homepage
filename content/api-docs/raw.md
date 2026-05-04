@@ -2,7 +2,7 @@
 title: Raw Content API
 description: 获取博客文章的原始 Markdown 内容和元数据
 method: GET
-path: /api/raw/{slug}
+endpoint: /api/raw/{slug}
 ---
 
 # Raw Content API
