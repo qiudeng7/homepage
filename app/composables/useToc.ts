@@ -10,14 +10,13 @@ export interface TocLink {
 function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
+    .replace(/[^\p{L}\p{N}\s-]/gu, '')
     .replace(/\s+/g, '-')
 }
 
 export function useToc() {
   const links = ref<TocLink[]>([])
   const activeId = ref('')
-  let observer: IntersectionObserver | null = null
 
   /**
    * 解析 markdown 文本，提取 heading 列表
@@ -54,46 +53,51 @@ export function useToc() {
   }
 
   /**
-   * 设置 IntersectionObserver 来跟踪当前可见的 heading
+   * 通过 scroll 事件跟踪当前阅读位置对应的 heading
    */
   function observeHeadings() {
     if (typeof window === 'undefined') return
 
-    // 先注入 id，确保 observer 能找到元素
     injectHeadingIds()
 
-    // 清理旧的 observer
-    if (observer) {
-      observer.disconnect()
-      observer = null
-    }
+    const updateActive = () => {
+      const headingEls = links.value
+        .map(link => document.getElementById(link.id))
+        .filter(Boolean) as HTMLElement[]
 
-    observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+      if (headingEls.length === 0) return
 
-        if (visible) {
-          activeId.value = visible.target.id
+      // 以视口顶部往下 120px 为参考线，找到最后一个越过这条线的 heading
+      const referenceY = window.scrollY + 120
+
+      let active = headingEls[0]
+      for (const h of headingEls) {
+        if (h.offsetTop <= referenceY) {
+          active = h
+        } else {
+          break
         }
-      },
-      {
-        rootMargin: '-100px 0px -70% 0px',
-        threshold: 0,
       }
-    )
 
-    // 观察所有 heading（使用 links 中的 id）
-    links.value.forEach(link => {
-      const el = document.getElementById(link.id)
-      if (el) observer!.observe(el)
-    })
-
-    // 如果当前没有任何 active，默认高亮第一个
-    if (!activeId.value && links.value.length > 0) {
-      activeId.value = links.value[0].id
+      activeId.value = active.id
     }
+
+    // RAF 节流
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActive()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    updateActive() // 初始定位
+
+    return () => window.removeEventListener('scroll', onScroll)
   }
 
   /**
