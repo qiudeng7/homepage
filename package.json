@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "SKIP_FETCH=1 nuxt dev",
-    "build": "node scripts/fetch-content.mjs && nuxt build",
-    "generate": "node scripts/fetch-content.mjs && nuxt generate",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {

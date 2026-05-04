@@ -1,5 +1,5 @@
 <script setup>
-const { data: rawMarkdown } = await useFetch('/api/demo-content')
+const { data: rawMarkdown } = await useFetch('/api/content/demo')
 </script>
 
 <template>
