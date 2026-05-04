@@ -25,5 +25,14 @@ export default defineContentConfig({
         rawbody: z.string(),
       }),
     }),
+    scripts: defineCollection({
+      type: 'page',
+      source: 'scripts/**/*.md',
+      schema: z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        rawbody: z.string(),
+      }),
+    }),
   },
 })
