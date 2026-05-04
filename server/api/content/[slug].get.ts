@@ -1,4 +1,4 @@
-import { getContent } from '~/server/utils/content'
+import { getContent } from '~~/server/utils/content'
 
 export default defineEventHandler((event) => {
   const slug = getRouterParam(event, 'slug') || 'demo'
