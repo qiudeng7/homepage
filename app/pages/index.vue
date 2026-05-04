@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { data: rawMarkdown } = await useFetch('/api/content/demo')
+const { origin } = useRequestURL()
+const { data: rawMarkdown } = await useFetch(`${origin}/content/demo.md`, {
+  responseType: 'text',
+  default: () => ''
+})
 const { links, activeId, parseMarkdownHeadings, observeHeadings, scrollTo } = useToc()
 
 // Markdown 解析后提取 heading
