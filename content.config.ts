@@ -14,5 +14,16 @@ export default defineContentConfig({
         rawbody: z.string(),
       }),
     }),
+    workerApi: defineCollection({
+      type: 'page',
+      source: 'worker-api/**/*.md',
+      schema: z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        method: z.string().optional(),
+        path: z.string().optional(),
+        rawbody: z.string(),
+      }),
+    }),
   },
 })
