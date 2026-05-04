@@ -73,7 +73,8 @@ const contentBundlePlugin = () => ({
 })
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/mdc'],
+  modules: ['@nuxt/ui', '@nuxtjs/mdc'],
+  css: ['~/assets/css/main.css'],
   nitro: {
     rollupConfig: {
       // 把自定义插件注入 Nitro 的 Rollup 构建流程
