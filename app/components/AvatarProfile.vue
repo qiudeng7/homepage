@@ -11,7 +11,7 @@ const { public: { authorName, githubId, githubUsername, avatarSize, motto } } = 
       class="relative group"
     >
       <img
-        :src="`/api/avatar?id=${githubId}&size=${avatarSize}`"
+        :src="`https://v6.gh-proxy.org/https://avatars.githubusercontent.com/u/${githubId}?v=4&size=${avatarSize}`"
         :alt="authorName"
         class="w-28 h-28 rounded-full ring-2 ring-gray-200 object-cover transition-all group-hover:brightness-50"
       />
