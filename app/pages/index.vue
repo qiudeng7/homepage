@@ -9,11 +9,11 @@ watchEffect(() => {
   }
 })
 
-// 内容渲染完成后启动观察
-onMounted(() => {
-  const cleanup = observeHeadings()
-  onUnmounted(() => cleanup?.())
-})
+// 当 links 变化且 DOM 更新后，重新设置 observer
+watch(links, async () => {
+  await nextTick()
+  observeHeadings()
+}, { immediate: true })
 </script>
 
 <template>

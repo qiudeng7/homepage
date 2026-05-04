@@ -15,7 +15,7 @@ function onClick(id: string) {
 
 <template>
   <nav class="toc">
-    <p class="toc-title">Table of Contents</p>
+    <p class="toc-title">OUTLINE</p>
     <ul class="toc-list">
       <li
         v-for="link in links"
