@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const isBlog = computed(() => route.path === '/' || route.path.startsWith('/blog'))
-const isApi = computed(() => route.path.startsWith('/worker-api'))
+const isApi = computed(() => route.path.startsWith('/api-docs'))
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const isApi = computed(() => route.path.startsWith('/worker-api'))
             博客
           </UButton>
           <UButton
-            to="/worker-api"
+            to="/api-docs"
             variant="ghost"
             color="neutral"
             :class="{ 'bg-gray-100': isApi }"

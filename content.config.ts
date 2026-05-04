@@ -14,9 +14,9 @@ export default defineContentConfig({
         rawbody: z.string(),
       }),
     }),
-    workerApi: defineCollection({
+    apiDocs: defineCollection({
       type: 'page',
-      source: 'worker-api/**/*.md',
+      source: 'api-docs/**/*.md',
       schema: z.object({
         title: z.string(),
         description: z.string().optional(),
