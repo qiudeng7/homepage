@@ -17,6 +17,14 @@ export default defineNuxtConfig({
       }
     }
   },
+  runtimeConfig: {
+    public: {
+      authorName: '秋灯',
+      githubId: '85886906',
+      avatarSize: '256',
+      motto: '长恨此身非我有，何时忘却营营',
+    }
+  },
   sourcemap: false,
   devtools: { enabled: true }
 })

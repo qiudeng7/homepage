@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { public: { authorName, githubId, avatarSize, motto } } = useRuntimeConfig()
 const { data: posts } = await useAsyncData('blog-list', () =>
   queryCollection('blog')
     .order('date', 'DESC')
@@ -8,9 +9,24 @@ const { data: posts } = await useAsyncData('blog-list', () =>
 
 <template>
   <UContainer class="py-12">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-3xl font-bold mb-8">文章列表</h1>
-      <div class="space-y-6">
+    <UPage>
+      <template #left>
+        <div class="flex flex-col items-center gap-3 sticky top-24 w-48">
+          <img
+            :src="`/api/avatar?id=${githubId}&size=${avatarSize}`"
+            :alt="authorName"
+            class="w-28 h-28 rounded-full ring-2 ring-gray-200 object-cover"
+          />
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-lg font-bold text-gray-900">{{ authorName }}</span>
+            <span class="text-xs text-gray-500 text-center italic leading-relaxed">{{ motto }}</span>
+          </div>
+        </div>
+      </template>
+
+      <UPageBody>
+        <h1 class="text-3xl font-bold mb-8">文章列表</h1>
+        <div class="space-y-6">
         <article
           v-for="post in posts"
           :key="post.path"
@@ -39,6 +55,7 @@ const { data: posts } = await useAsyncData('blog-list', () =>
           </NuxtLink>
         </article>
       </div>
-    </div>
+      </UPageBody>
+    </UPage>
   </UContainer>
 </template>
