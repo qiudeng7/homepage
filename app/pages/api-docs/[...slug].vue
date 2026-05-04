@@ -22,7 +22,7 @@ const currentPath = computed(() => {
   return `/api-docs/${slug.value}`
 })
 
-const { data: page } = await useAsyncData(() => currentPath.value, () =>
+const { data: page } = await useAsyncData(() =>
   queryCollection('apiDocs').path(currentPath.value).first()
 )
 

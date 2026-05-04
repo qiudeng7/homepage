@@ -19,7 +19,7 @@ const currentPath = computed(() => {
   return `/scripts/${slug.value}`
 })
 
-const { data: page } = await useAsyncData(() => currentPath.value, () =>
+const { data: page } = await useAsyncData(() =>
   queryCollection('scripts').path(currentPath.value).first()
 )
 
