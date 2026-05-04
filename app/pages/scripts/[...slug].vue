@@ -59,23 +59,7 @@ onUnmounted(() => {
         <div class="sticky top-24 w-48 space-y-6">
           <AvatarProfile />
           
-          <nav class="border-t pt-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">运维脚本</p>
-            <ul class="space-y-1">
-              <li v-for="doc in scripts" :key="doc.path">
-                <NuxtLink
-                  :to="doc.path"
-                  class="block px-2 py-1.5 text-sm rounded-md transition-colors"
-                  :class="{
-                    'bg-gray-100 text-gray-900 font-medium': doc.path === currentPath,
-                    'text-gray-600 hover:bg-gray-50 hover:text-gray-900': doc.path !== currentPath
-                  }"
-                >
-                  {{ doc.title }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </nav>
+          <DocNav title="运维脚本" :items="scripts || []" :current-path="currentPath" />
         </div>
       </template>
 
