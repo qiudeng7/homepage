@@ -11,6 +11,7 @@ export default defineContentConfig({
         description: z.string().optional(),
         date: z.date(),
         tags: z.array(z.string()).optional(),
+        rawbody: z.string(),
       }),
     }),
   },

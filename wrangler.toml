@@ -1,3 +1,8 @@
 name = "blog"
 main = ".output/server/index.mjs"
 compatibility_date = "2026-05-04"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-db"
+database_id = "6f1f964e-e4c5-43ea-93dc-ac242d93a9c2"
