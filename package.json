@@ -23,5 +23,12 @@
   "devDependencies": {
     "@types/node": "^25.6.0",
     "wrangler": "^4.87.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "sharp",
+      "workerd"
+    ]
   }
 }
