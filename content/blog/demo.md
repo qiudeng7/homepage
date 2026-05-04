@@ -1,3 +1,10 @@
+---
+title: 示例文章
+description: Common Markdown 的所有基本语法演示
+date: 2026-05-04
+tags: ['markdown', 'demo']
+---
+
 # 示例文章
 
 这是一段普通的段落文字，用来展示 **粗体**、*斜体* 和 `行内代码` 的渲染效果。

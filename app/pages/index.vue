@@ -1,46 +1,44 @@
 <script setup lang="ts">
-const { origin } = useRequestURL()
-const { data: rawMarkdown } = await useFetch(`${origin}/content/demo.md`, {
-  responseType: 'text',
-  default: () => ''
-})
-const { links, activeId, parseMarkdownHeadings, observeHeadings, scrollTo } = useToc()
-
-// Markdown 解析后提取 heading
-watchEffect(() => {
-  if (rawMarkdown.value) {
-    links.value = parseMarkdownHeadings(rawMarkdown.value)
-  }
-})
-
-// 当 links 变化且 DOM 更新后，重新设置 scroll 监听
-let cleanupScroll: (() => void) | undefined
-
-watch(links, async () => {
-  await nextTick()
-  cleanupScroll?.()
-  cleanupScroll = observeHeadings()
-}, { immediate: true })
-
-onUnmounted(() => {
-  cleanupScroll?.()
-})
+const { data: posts } = await useAsyncData('blog-list', () =>
+  queryCollection('blog')
+    .order('date', 'DESC')
+    .all()
+)
 </script>
 
 <template>
   <UContainer class="py-12">
-    <UPage>
-      <UPageBody>
-        <MDC :value="rawMarkdown" />
-      </UPageBody>
-
-      <template #right>
-        <Toc
-          :links="links"
-          :active-id="activeId"
-          @navigate="scrollTo"
-        />
-      </template>
-    </UPage>
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold mb-8">文章列表</h1>
+      <div class="space-y-6">
+        <article
+          v-for="post in posts"
+          :key="post.path"
+          class="border rounded-lg p-6 hover:shadow-md transition-shadow"
+        >
+          <NuxtLink :to="post.path" class="block">
+            <h2 class="text-xl font-semibold mb-2">{{ post.title }}</h2>
+            <p v-if="post.description" class="text-gray-600 mb-3">
+              {{ post.description }}
+            </p>
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <time>{{ new Date(post.date).toLocaleDateString('zh-CN') }}</time>
+              <span
+                v-if="post.tags?.length"
+                class="flex gap-2"
+              >
+                <span
+                  v-for="tag in post.tags"
+                  :key="tag"
+                  class="bg-gray-100 px-2 py-0.5 rounded"
+                >
+                  {{ tag }}
+                </span>
+              </span>
+            </div>
+          </NuxtLink>
+        </article>
+      </div>
+    </div>
   </UContainer>
 </template>

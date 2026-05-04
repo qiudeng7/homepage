@@ -1,9 +1,22 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-04',
-  modules: ['@nuxt/ui', '@nuxtjs/mdc'],
+  modules: ['@nuxt/ui', '@nuxt/content'],
   css: ['~/assets/css/main.css'],
   nitro: {
-    preset: 'cloudflare-module',
+    preset: 'cloudflare_module',
+    cloudflare: {
+      deployConfig: true,
+      wrangler: {
+        d1_databases: [
+          {
+            binding: 'DB',
+            database_name: 'blog-db',
+            database_id: '6f1f964e-e4c5-43ea-93dc-ac242d93a9c2'
+          }
+        ]
+      }
+    }
   },
+  sourcemap: false,
   devtools: { enabled: true }
 })
