@@ -19,6 +19,11 @@ const currentPath = computed(() => {
   return `/scripts/${slug.value}`
 })
 
+// 无 slug 时自动跳转到第一个脚本
+if (!slug.value && scripts.value?.[0]) {
+  await navigateTo(scripts.value[0].path, { replace: true })
+}
+
 const { data: page } = await useAsyncData(() =>
   queryCollection('scripts').path(currentPath.value).first()
 )

@@ -22,6 +22,11 @@ const currentPath = computed(() => {
   return `/api-docs/${slug.value}`
 })
 
+// 无 slug 时自动跳转到第一个文档
+if (!slug.value && apiDocs.value?.[0]) {
+  await navigateTo(apiDocs.value[0].path, { replace: true })
+}
+
 const { data: page } = await useAsyncData(() =>
   queryCollection('apiDocs').path(currentPath.value).first()
 )
