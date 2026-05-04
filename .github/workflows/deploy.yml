@@ -20,10 +20,9 @@ jobs:
         run: npm install -g pnpm@10
 
       - name: Install dependencies
-        run: pnpm install
-
-      - name: Rebuild native modules
-        run: pnpm rebuild better-sqlite3
+        run: |
+          pnpm config set ignore-build-scripts false
+          pnpm install
 
       - name: Build
         run: pnpm run build
