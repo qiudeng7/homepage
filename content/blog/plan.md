@@ -7,15 +7,73 @@ tags: ['plan']
 
 # plan
 
-网站施工计划🚧
+施工计划🚧，其实我很勤快。
 
-仓库地址： https://github.com/qiudeng7/homepage
+博客仓库地址： https://github.com/qiudeng7/homepage
 
-1. 添加 DocNav 层级
-2. 添加 服务中心
-   1. dae/mihomo 代理配置 CRDT 同步
-   2. cloudflare worker 国内加速
-   3. rss 订阅
-      1. apex 博主订阅
-      2. rsshub actions
-   4. oh-my-infra
+## 个人站点
+
+### 视觉
+
+考虑添加一些动效, 尝试新的配色, 和布局.
+
+### 添加 DocNav 层级
+
+目前 “脚本” 和 “API接口” 页面，左侧头像下方的文章列表就是 DocNav，需要让他支持最多两个层级。
+
+### 优化 API 接口
+
+API 接口的设计意图是让所有通过 nuxt content 同步到 cloudflare d1 数据库的文档和附件都可以通过 API 接口访问（除了附件也包括文档内的代码块）。
+
+如此做的目的是希望未来可以直接通过接口访问文档内容和附件，这样文章就不仅仅是文章，还可以拿来用，方便给 AI 读，以及直接访问附件。
+
+### 博客
+
+1. 博客页面添加 Doc Nav
+   1. 关于页面
+   2. tag 页面，该页面将由actions计算生成, 不必由 nuxt 在运行时计算
+2. 添加文章一键截图
+3. 添加 rss 订阅
+4. 添加置顶功能
+
+### 添加 服务中心
+
+服务中心将是一个新的独立页面，展示符合这些条件的项目：
+
+1. 我提供的免费服务. 比如我后面会写两个新项目:
+   1. 通过 cf worker 提供 apex 的综合资讯和视频。
+   2. cf worker 结合 actions 提供免费的 rsshub, 并整理自己的订阅
+
+2. 非公开但是可以个人零成本部署的服务，筛选条件是真的有用，不一定需要是我写的。
+   1. 包括 yaos, 以及后面我打算写的 obsidian插件同步、dae/mohomo 配置同步。
+
+
+## oh my infra
+
+oh-my-infra 将是一个新项目, [概念文档](https://github.com/qiudeng7/oh-my-infra/blob/main/conception.md) 
+
+还没有明确如何混合处理 命令式和声明式
+
+## obsidian 插件
+
+### 插件同步
+
+vault 内容可以通过 yaos 同步，但是插件不会，由于obsidian的插件代码、配置、数据隔离的不是很清晰，同步插件的具体形式可能只是记录插件id和一些关键配置，方便其他设备安装，而不会自动安装。
+
+### 博客同步
+
+目前博客的 markdown 还是手写在源码仓库, 原计划的最终状态是手动或半自动的把博客分类下的内容提交到 github, 由 actions 把内容按规则映射到网站仓库并部署到cf.
+
+
+obsidian 目前的内容包括博客和日记，需要单独把博客的内容提交到博客仓库
+
+
+## 写作
+
+想研究一下 cloudflare 国内加速, 需求并不是很强烈.
+
+想分享一下最近重新使用 nuxt 的感受, nuxt content, studio, nuxthub, nuxtui, 加上这些模块之后感觉nuxt好用了许多.
+
+想分享一下 yaos.
+
+但是有些文章的质量并不是很高, 我不确定要不要写, 如何分类.
