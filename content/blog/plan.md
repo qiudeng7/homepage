@@ -13,11 +13,6 @@ tags: ['plan']
 
 ## 个人站点
 
-### 调整 OUTLINE
-
-1. outline 会和 header 重叠
-2. outline 不支持多层级.
-
 ### 添加 搜索功能
 
 如题.
