@@ -12,5 +12,5 @@ export const siteConfig = {
   /** 头像尺寸 */
   avatarSize: '256',
   /** 个人签名 */
-  motto: '长恨此身非我有，何时忘却营营',
+  motto: '我想写经得起历史检验的文章',
 } as const
