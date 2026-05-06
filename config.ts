@@ -14,3 +14,5 @@ export const siteConfig = {
   /** 个人签名 */
   motto: '我想写让新手循序渐进,老手得见脉络,逻辑顺畅,字无虚发,经得起时间检验的文章.',
 } as const
+
+export type SiteConfig = typeof siteConfig
