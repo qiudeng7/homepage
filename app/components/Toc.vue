@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { TocLink } from '~/composables/useToc'
+
 const props = defineProps<{
-  links: { id: string; text: string; depth: number }[]
+  links: TocLink[]
   activeId: string
+  level?: number
 }>()
 
 const emit = defineEmits<{
@@ -11,14 +14,17 @@ const emit = defineEmits<{
 function onClick(id: string) {
   emit('navigate', id)
 }
+
+const isRoot = computed(() => (props.level ?? 0) === 0)
+const nonTitleLinks = computed(() => props.links.filter(link => link.depth !== 1))
 </script>
 
 <template>
-  <nav class="toc">
+  <nav v-if="isRoot" class="toc">
     <p class="toc-title">OUTLINE</p>
-    <ul class="toc-list">
+    <ul v-if="nonTitleLinks.length" class="toc-list">
       <li
-        v-for="link in links"
+        v-for="link in nonTitleLinks"
         :key="link.id"
         :class="[
           'toc-item',
@@ -33,16 +39,49 @@ function onClick(id: string) {
         >
           {{ link.text }}
         </a>
+        <Toc
+          v-if="link.children?.length"
+          :links="link.children"
+          :active-id="activeId"
+          :level="(level ?? 0) + 1"
+          @navigate="onClick"
+        />
       </li>
     </ul>
   </nav>
+  <ul v-else class="toc-list">
+    <li
+      v-for="link in links"
+      :key="link.id"
+      :class="[
+        'toc-item',
+        `toc-depth-${link.depth}`,
+        { 'toc-active': activeId === link.id }
+      ]"
+    >
+      <a
+        :href="`#${link.id}`"
+        class="toc-link"
+        @click.prevent="onClick(link.id)"
+      >
+        {{ link.text }}
+      </a>
+      <Toc
+        v-if="link.children?.length"
+        :links="link.children"
+        :active-id="activeId"
+        :level="(level ?? 0) + 1"
+        @navigate="onClick"
+      />
+    </li>
+  </ul>
 </template>
 
 <style scoped>
 .toc {
   position: sticky;
-  top: 2rem;
-  max-height: calc(100vh - 4rem);
+  top: 6rem;
+  max-height: calc(100vh - 8rem);
   overflow-y: auto;
   padding: 1rem;
   font-size: 0.875rem;
@@ -62,28 +101,12 @@ function onClick(id: string) {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 1px solid var(--ui-border);
 }
 
 .toc-item {
   position: relative;
   margin: 0;
   padding: 0;
-}
-
-.toc-item::before {
-  content: '';
-  position: absolute;
-  left: -1px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: transparent;
-  transition: background 0.2s;
-}
-
-.toc-item.toc-active::before {
-  background: var(--ui-primary);
 }
 
 .toc-link {
@@ -100,21 +123,30 @@ function onClick(id: string) {
   background: var(--ui-bg-elevated);
 }
 
-.toc-active .toc-link {
+.toc-item.toc-active > .toc-link {
   color: var(--ui-primary);
   font-weight: 500;
 }
 
-.toc-depth-1 {
-  font-weight: 500;
-}
-
-.toc-depth-2 {
-  padding-left: 0.75rem;
+.toc-depth-2 > .toc-link {
+  color: var(--ui-text);
+  opacity: 0.8;
 }
 
 .toc-depth-3 {
+  padding-left: 0.75rem;
+}
+
+.toc-depth-4 {
   padding-left: 1.5rem;
+}
+
+.toc-depth-5 {
+  padding-left: 2.25rem;
+}
+
+.toc-depth-6 {
+  padding-left: 3rem;
 }
 
 @media (max-width: 1024px) {

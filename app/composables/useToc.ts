@@ -5,6 +5,7 @@ export interface TocLink {
   id: string
   text: string
   depth: number
+  children?: TocLink[]
 }
 
 function slugify(text: string): string {
@@ -53,6 +54,20 @@ export function useToc() {
   }
 
   /**
+   * 扁平化提取所有 link（包括嵌套 children）
+   */
+  function flattenLinks(links: TocLink[]): TocLink[] {
+    const result: TocLink[] = []
+    for (const link of links) {
+      result.push(link)
+      if (link.children?.length) {
+        result.push(...flattenLinks(link.children))
+      }
+    }
+    return result
+  }
+
+  /**
    * 通过 scroll 事件跟踪当前阅读位置对应的 heading
    */
   function observeHeadings() {
@@ -61,7 +76,8 @@ export function useToc() {
     injectHeadingIds()
 
     const updateActive = () => {
-      const headingEls = links.value
+      const allLinks = flattenLinks(links.value)
+      const headingEls = allLinks
         .map(link => document.getElementById(link.id))
         .filter(Boolean) as HTMLElement[]
 

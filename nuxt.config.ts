@@ -23,6 +23,12 @@ export default defineNuxtConfig({
       type: 'd1',
       bindingName: 'DB',
     },
+    markdown: {
+      toc: {
+        depth: 6,
+        searchDepth: 6,
+      },
+    },
   },
   sourcemap: false,
   devtools: { enabled: true }
