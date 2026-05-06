@@ -4,6 +4,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-05-04',
   modules: ['@nuxt/ui', '@nuxt/content', '@nuxthub/core'],
   css: ['~/assets/css/main.css'],
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      ],
+    },
+  },
   nitro: {
     preset: 'cloudflare_module',
   },
