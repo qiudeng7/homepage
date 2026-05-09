@@ -16,6 +16,6 @@
   "githubId": "85886906",
   "githubUsername": "qiudeng7",
   "avatarSize": "256",
-  "motto": "我想写让新手循序渐进, 老手得见脉络, 逻辑顺畅, 字无虚发, 经得起时间检验的文章."
+  "motto": "喜欢写文章."
 }
 ```
