@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const isBlog = computed(() => route.path === '/' || route.path.startsWith('/blog'))
+const isAbout = computed(() => route.path.startsWith('/about'))
 const isSubscription = computed(() => route.path.startsWith('/subscription'))
 const isScripts = computed(() => route.path.startsWith('/scripts'))
 const isApi = computed(() => route.path.startsWith('/api-docs'))
@@ -22,6 +23,14 @@ const isApi = computed(() => route.path.startsWith('/api-docs'))
             :class="{ 'bg-gray-100': isBlog }"
           >
             博客
+          </UButton>
+          <UButton
+            to="/about"
+            variant="ghost"
+            color="neutral"
+            :class="{ 'bg-gray-100': isAbout }"
+          >
+            关于
           </UButton>
           <UButton
             to="/subscription"
