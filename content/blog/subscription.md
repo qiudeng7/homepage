@@ -25,23 +25,21 @@ tags: []
 
 这里其实可以直接管理我的b站关注, 但是其一是 b站订阅没有分类, 其二是 我的关注实在是太多了整理不过来, 其三是 我想在博客把所有平台的关注和订阅放在一起看.
 
-## Apex切片
+### Apex切片
 
 1. [快乐滋崩在这里](https://space.bilibili.com/4591661), 比赛切片
 2. [山鸟与鱼不相遇](https://space.bilibili.com/249305882), 虎哥切片比较多
 3. [一条lucky的区](https://space.bilibili.com/3546697315650094), 谁都切
 4. [羊皮奶](https://space.bilibili.com/290923147), QQ切片多
 
-
-
-## 生活娱乐
-
-1. [LKS](https://space.bilibili.com/125526)
-2. 
-
-## 政治历史
+### 政治历史
 
 1. [小约翰可汗](https://space.bilibili.com/23947287)
 2. [不嘚瑟都掉毛](https://space.bilibili.com/601599567)
 3. [燕三嘤嘤嘤](https://space.bilibili.com/430426421)
 4. [麻薯波比](https://space.bilibili.com/703186600)
+
+### 未分类
+
+1. [LKS](https://space.bilibili.com/125526)
+2. [影视飓风](https://space.bilibili.com/946974)
