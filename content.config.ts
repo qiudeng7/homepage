@@ -34,5 +34,14 @@ export default defineContentConfig({
         rawbody: z.string(),
       }),
     }),
+    subscription: defineCollection({
+      type: 'page',
+      source: 'subscription.md',
+      schema: z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        rawbody: z.string(),
+      }),
+    }),
   },
 })
